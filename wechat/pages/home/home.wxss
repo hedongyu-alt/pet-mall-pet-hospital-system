@@ -1,0 +1,313 @@
+/* pages/home/home.wxss */
+.home-container {
+  padding: 0 0 30rpx 0;
+  background-color: #f5f7fa;
+  min-height: 100vh;
+}
+
+/* 卡片通用样式 */
+.card {
+  background: white;
+  border-radius: 12rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+}
+
+/* 标签通用样式 */
+.tag {
+  font-size: 22rpx;
+  padding: 4rpx 12rpx;
+  border-radius: 8rpx;
+  display: inline-block;
+}
+
+.tag-success {
+  background: #e8f5e9;
+  color: #2c5f2d;
+}
+
+.tag-warning {
+  background: #fff3e0;
+  color: #e65100;
+}
+
+.tag-info {
+  background: #e3f2fd;
+  color: #1565c0;
+}
+
+/* 轮播图 */
+.carousel-section {
+  margin-bottom: 30rpx;
+}
+
+.carousel {
+  width: 100%;
+  height: 400rpx;
+}
+
+.carousel-image {
+  width: 100%;
+  height: 100%;
+}
+
+/* 欢迎卡片 */
+.welcome-section {
+  padding: 0 30rpx;
+  margin-bottom: 30rpx;
+}
+
+.welcome-card {
+  display: flex;
+  align-items: center;
+  padding: 30rpx;
+  gap: 30rpx;
+}
+
+.welcome-icon {
+  font-size: 80rpx;
+}
+
+.welcome-text {
+  flex: 1;
+}
+
+.welcome-title {
+  color: #2c5f2d;
+  font-size: 36rpx;
+  font-weight: 600;
+  margin-bottom: 10rpx;
+}
+
+.welcome-subtitle {
+  color: #666;
+  font-size: 26rpx;
+}
+
+/* 模块区域 */
+.module-section {
+  padding: 0 30rpx;
+  margin-bottom: 40rpx;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+
+.section-title {
+  flex: 1;
+}
+
+.title-text {
+  color: #2c5f2d;
+  font-size: 40rpx;
+  font-weight: 600;
+  margin-bottom: 8rpx;
+}
+
+.title-subtitle {
+  color: #666;
+  font-size: 24rpx;
+}
+
+.section-more {
+  color: #2c5f2d;
+  font-size: 28rpx;
+}
+
+/* 卡片网格 */
+.cards-grid {
+  display: flex;
+  gap: 20rpx;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  padding-bottom: 10rpx;
+}
+
+.cards-grid::-webkit-scrollbar {
+  display: none;
+}
+
+.item-card {
+  display: inline-block;
+  width: 300rpx;
+  flex-shrink: 0;
+  vertical-align: top;
+}
+
+.card-image {
+  width: 100%;
+  height: 260rpx;
+  display: block;
+}
+
+.card-content {
+  padding: 20rpx;
+}
+
+.card-title {
+  color: #333;
+  font-size: 28rpx;
+  font-weight: 600;
+  margin-bottom: 16rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 商品相关 */
+.product-meta {
+  display: flex;
+  gap: 10rpx;
+  margin-bottom: 16rpx;
+}
+
+.category-tag,
+.pet-type {
+  font-size: 22rpx;
+  color: #666;
+  background: #f0f0f0;
+  padding: 4rpx 12rpx;
+  border-radius: 8rpx;
+}
+
+.product-price {
+  color: #f56c6c;
+  font-size: 36rpx;
+  font-weight: 600;
+}
+
+/* 保险卡片 */
+.insurance-card {
+  width: 380rpx;
+}
+
+.insurance-header {
+  background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+  padding: 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.insurance-icon {
+  font-size: 60rpx;
+}
+
+.insurance-badge {
+  background: rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 8rpx 20rpx;
+  border-radius: 30rpx;
+  font-size: 22rpx;
+  font-weight: 600;
+}
+
+.insurance-desc {
+  color: #666;
+  font-size: 24rpx;
+  margin-bottom: 16rpx;
+  line-height: 1.5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+  height: 72rpx;
+}
+
+.insurance-price {
+  display: flex;
+  align-items: baseline;
+  gap: 8rpx;
+}
+
+.price-value {
+  color: #f56c6c;
+  font-size: 40rpx;
+  font-weight: 600;
+}
+
+.price-unit {
+  color: #999;
+  font-size: 24rpx;
+}
+
+/* 医院信息 */
+.hospital-services {
+  color: #666;
+  font-size: 24rpx;
+  margin-bottom: 12rpx;
+  line-height: 1.5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+  height: 72rpx;
+}
+
+.hospital-address {
+  color: #666;
+  font-size: 22rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 宠物信息 */
+.pet-tags {
+  display: flex;
+  gap: 8rpx;
+  margin-bottom: 12rpx;
+  flex-wrap: wrap;
+}
+
+.status-tag {
+  color: #2c5f2d;
+  font-size: 26rpx;
+  font-weight: 500;
+}
+
+/* 论坛卡片 */
+.forum-card {
+  width: 340rpx;
+}
+
+.forum-stats {
+  display: flex;
+  gap: 30rpx;
+  color: #999;
+  font-size: 24rpx;
+  margin-bottom: 16rpx;
+}
+
+.forum-author {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  padding-top: 16rpx;
+  border-top: 1rpx solid #e4e7ed;
+}
+
+.author-avatar {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+}
+
+.author-name {
+  color: #999;
+  font-size: 22rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+}
+
+

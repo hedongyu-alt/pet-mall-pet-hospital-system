@@ -1,0 +1,263 @@
+/* pages/insurance-detail/insurance-detail.wxss */
+.page-container {
+  padding: 30rpx;
+  padding-bottom: 160rpx;
+}
+
+.insurance-header {
+  text-align: center;
+  padding: 60rpx 30rpx;
+  margin-bottom: 30rpx;
+}
+
+.insurance-icon {
+  font-size: 120rpx;
+  margin-bottom: 30rpx;
+}
+
+.insurance-name {
+  font-size: 40rpx;
+  font-weight: 600;
+  color: #303133;
+  margin-bottom: 20rpx;
+}
+
+.insurance-price {
+  color: #f56c6c;
+  font-size: 48rpx;
+  font-weight: 600;
+}
+
+.insurance-content {
+  padding: 30rpx;
+}
+
+.content-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #303133;
+  margin-bottom: 20rpx;
+}
+
+.content-text {
+  font-size: 28rpx;
+  color: #606266;
+  line-height: 1.8;
+  white-space: pre-wrap;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  padding: 20rpx 30rpx;
+  box-shadow: 0 -4rpx 16rpx rgba(0, 0, 0, 0.08);
+}
+
+.buy-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #2c5f2d 0%, #97bc62 100%);
+  color: white;
+  border: none;
+  border-radius: 8rpx;
+  padding: 28rpx;
+  font-size: 32rpx;
+  font-weight: 600;
+}
+
+.content-text.highlight {
+  color: #f56c6c;
+  font-weight: 600;
+  background: #fff4e6;
+  padding: 20rpx;
+  border-radius: 8rpx;
+}
+
+/* 购买弹窗 */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  width: 90%;
+  max-width: 700rpx;
+  max-height: 80vh;
+  background: white;
+  border-radius: 16rpx;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30rpx;
+  border-bottom: 1rpx solid #e4e7ed;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.modal-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #303133;
+}
+
+.modal-close {
+  font-size: 48rpx;
+  color: #909399;
+  line-height: 1;
+  padding: 0 10rpx;
+}
+
+.modal-body {
+  flex: 1;
+  padding: 30rpx;
+  overflow-y: auto;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+.form-section {
+  margin-bottom: 30rpx;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.section-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #303133;
+  margin-bottom: 20rpx;
+  padding-bottom: 10rpx;
+  border-bottom: 2rpx solid #2c5f2d;
+}
+
+.form-item {
+  margin-bottom: 20rpx;
+  width: 100%;
+  overflow: hidden;
+}
+
+.form-label {
+  display: block;
+  font-size: 26rpx;
+  color: #606266;
+  margin-bottom: 10rpx;
+}
+
+.form-input {
+  display: block;
+  width: 100%;
+  padding: 0 20rpx;
+  background: #f5f7fa;
+  border: 1rpx solid #dcdfe6;
+  border-radius: 8rpx;
+  font-size: 28rpx;
+  color: #303133;
+  box-sizing: border-box;
+  height: 72rpx;
+  line-height: 72rpx;
+}
+
+.input-placeholder {
+  color: #909399;
+  font-size: 28rpx;
+}
+
+.form-input.picker {
+  display: flex;
+  align-items: center;
+  height: 72rpx;
+  padding: 0 20rpx;
+}
+
+.pet-type-btns {
+  display: flex;
+  gap: 20rpx;
+}
+
+.type-btn {
+  flex: 1;
+  padding: 16rpx 20rpx;
+  text-align: center;
+  background: #f5f7fa;
+  border: 1rpx solid #dcdfe6;
+  border-radius: 8rpx;
+  font-size: 28rpx;
+  color: #606266;
+  height: 72rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.type-btn.active {
+  background: #2c5f2d;
+  color: white;
+  border-color: #2c5f2d;
+}
+
+.price-display {
+  padding: 16rpx 20rpx;
+  background: #fff4e6;
+  border-radius: 8rpx;
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #f56c6c;
+  text-align: center;
+  height: 72rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.modal-footer {
+  display: flex;
+  padding: 20rpx 30rpx 30rpx;
+  gap: 20rpx;
+  flex-shrink: 0;
+  border-top: 1rpx solid #e4e7ed;
+  box-sizing: border-box;
+}
+
+.modal-cancel-btn {
+  flex: 1;
+  background: #f5f7fa;
+  color: #606266;
+  border: 1rpx solid #dcdfe6;
+  border-radius: 8rpx;
+  padding: 24rpx;
+  font-size: 28rpx;
+  box-sizing: border-box;
+}
+
+.modal-confirm-btn {
+  flex: 1;
+  background: linear-gradient(135deg, #2c5f2d 0%, #97bc62 100%);
+  color: white;
+  border: none;
+  border-radius: 8rpx;
+  padding: 24rpx;
+  font-size: 28rpx;
+  font-weight: 600;
+  box-sizing: border-box;
+}
+
+

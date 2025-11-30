@@ -1,0 +1,94 @@
+<!--pages/product-detail/product-detail.wxml-->
+<view class="detail-container">
+  <view class="detail-loading" wx:if="{{!product.id}}">加载中...</view>
+  <view class="detail-content" wx:else>
+    <!-- 商品图片 -->
+    <swiper class="product-swiper" indicator-dots="{{true}}" autoplay="{{false}}">
+      <swiper-item wx:for="{{product.images}}" wx:key="index">
+        <image class="swiper-image" src="{{item}}" mode="aspectFill"></image>
+      </swiper-item>
+    </swiper>
+
+    <!-- 商品信息 -->
+    <view class="product-info card">
+      <view class="product-price">¥{{product.price}}</view>
+      <view class="product-name">{{product.name}}</view>
+      <view class="product-tags">
+        <text class="tag tag-info">{{product.categoryName}}</text>
+        <text class="tag tag-success">{{product.petType}}</text>
+      </view>
+    </view>
+
+    <!-- 商品描述 -->
+    <view class="product-desc card">
+      <view class="desc-title">商品描述</view>
+      <view class="desc-content">{{product.description}}</view>
+    </view>
+
+    <!-- 商品评价 -->
+    <view class="product-reviews card">
+      <view class="reviews-title">
+        <text>商品评价</text>
+        <text class="review-count">{{reviewList.length}}条评价</text>
+      </view>
+      
+      <view class="review-list" wx:if="{{reviewList.length > 0}}">
+        <view class="review-item" wx:for="{{reviewList}}" wx:key="id">
+          <view class="review-header">
+            <view class="user-info">
+              <text class="user-name">{{item.userName}}</text>
+              <view class="rating">
+                <text class="star {{starNum <= item.rating ? 'active' : ''}}" wx:for="{{[1,2,3,4,5]}}" wx:key="*this" wx:for-item="starNum">★</text>
+              </view>
+            </view>
+            <view class="review-time">{{item.createTime}}</view>
+          </view>
+          <view class="review-content">{{item.content}}</view>
+          <view class="review-images" wx:if="{{item.images && item.images.length > 0}}">
+            <image wx:for="{{item.images}}" wx:key="index" class="review-image" src="{{item}}" mode="aspectFill" bindtap="previewImage" data-images="{{item.images}}" data-current="{{item}}"></image>
+          </view>
+        </view>
+      </view>
+
+      <view class="no-review" wx:else>
+        <text class="no-review-icon">⭐</text>
+        <text class="no-review-text">暂无评价</text>
+      </view>
+    </view>
+
+    <!-- 底部按钮 -->
+    <view class="detail-footer">
+      <button class="add-cart-btn-full" bindtap="addToCart">加入购物车</button>
+    </view>
+  </view>
+</view>
+
+<!-- 加入购物车弹窗 -->
+<view class="modal-overlay" wx:if="{{showCartModal}}" bindtap="closeCartModal">
+  <view class="modal-content" catchtap="stopPropagation">
+    <view class="modal-header">
+      <text class="modal-title">加入购物车</text>
+      <text class="modal-close" bindtap="closeCartModal">×</text>
+    </view>
+    <view class="modal-body">
+      <view class="product-info-dialog">
+        <image class="product-img-dialog" src="{{product.images[0]}}" mode="aspectFill"></image>
+        <text class="product-name-dialog">{{product.name}}</text>
+      </view>
+      <view class="quantity-selector">
+        <text class="quantity-label">购买数量</text>
+        <view class="quantity-controls">
+          <button class="quantity-btn" bindtap="decreaseQuantity">-</button>
+          <input class="quantity-input" type="number" value="{{cartQuantity}}" disabled />
+          <button class="quantity-btn" bindtap="increaseQuantity">+</button>
+        </view>
+      </view>
+    </view>
+    <view class="modal-footer">
+      <button class="modal-cancel-btn" bindtap="closeCartModal">取消</button>
+      <button class="modal-confirm-btn" bindtap="confirmAddToCart">确定</button>
+    </view>
+  </view>
+</view>
+
+

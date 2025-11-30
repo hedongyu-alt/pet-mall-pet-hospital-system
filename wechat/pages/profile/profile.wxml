@@ -1,0 +1,117 @@
+<!--pages/profile/profile.wxml-->
+<view class="profile-container">
+  <!-- 用户信息卡片 -->
+  <view class="user-info-card card">
+    <image class="user-avatar" src="{{userInfo.avatar || defaultAvatar}}" mode="aspectFill"></image>
+    <view class="user-details">
+      <view class="user-nickname">{{userInfo.nickname || '未登录'}}</view>
+      <view class="user-phone" wx:if="{{userInfo.phone}}">{{userInfo.phone}}</view>
+    </view>
+    <view class="login-btn" wx:if="{{!isLogin}}" bindtap="goLogin">
+      登录/注册
+    </view>
+  </view>
+
+  <!-- 功能菜单 -->
+  <view class="menu-section">
+    <view class="menu-title">购物中心</view>
+    <view class="menu-card card">
+      <view class="menu-item" bindtap="navigateTo" data-url="/pages/cart/cart">
+        <view class="menu-icon">🛒</view>
+        <view class="menu-text">购物车</view>
+        <view class="menu-arrow">></view>
+      </view>
+      <view class="menu-item" bindtap="navigateTo" data-url="/pages/order-list/order-list">
+        <view class="menu-icon">📦</view>
+        <view class="menu-text">我的订单</view>
+        <view class="menu-arrow">></view>
+      </view>
+    </view>
+  </view>
+
+  <view class="menu-section">
+    <view class="menu-title">宠物服务</view>
+    <view class="menu-card card">
+      <view class="menu-item" bindtap="navigateTo" data-url="/pages/hospital-list/hospital-list">
+        <view class="menu-icon">🏥</view>
+        <view class="menu-text">宠物医院</view>
+        <view class="menu-arrow">></view>
+      </view>
+      <view class="menu-item" bindtap="navigateTo" data-url="/pages/breeding-list/breeding-list">
+        <view class="menu-icon">🔍</view>
+        <view class="menu-text">寻找配种</view>
+        <view class="menu-arrow">></view>
+      </view>
+      <view class="menu-item" bindtap="navigateTo" data-url="/pages/foster-list/foster-list">
+        <view class="menu-icon">🏠</view>
+        <view class="menu-text">宠物寄养</view>
+        <view class="menu-arrow">></view>
+      </view>
+      <view class="menu-item" bindtap="navigateTo" data-url="/pages/adoption-list/adoption-list">
+        <view class="menu-icon">🎁</view>
+        <view class="menu-text">宠物领养</view>
+        <view class="menu-arrow">></view>
+      </view>
+    </view>
+  </view>
+
+  <view class="menu-section">
+    <view class="menu-title">保险服务</view>
+    <view class="menu-card card">
+      <view class="menu-item" bindtap="navigateTo" data-url="/pages/insurance-list/insurance-list">
+        <view class="menu-icon">🛡️</view>
+        <view class="menu-text">宠物保险</view>
+        <view class="menu-arrow">></view>
+      </view>
+      <view class="menu-item" bindtap="navigateTo" data-url="/pages/policy-list/policy-list">
+        <view class="menu-icon">📄</view>
+        <view class="menu-text">我的保单</view>
+        <view class="menu-arrow">></view>
+      </view>
+      <view class="menu-item" bindtap="navigateTo" data-url="/pages/claim-list/claim-list">
+        <view class="menu-icon">📋</view>
+        <view class="menu-text">申保记录</view>
+        <view class="menu-arrow">></view>
+      </view>
+    </view>
+  </view>
+
+  <view class="menu-section">
+    <view class="menu-title">我的记录</view>
+    <view class="menu-card card">
+      <view class="menu-item" bindtap="navigateTo" data-url="/pages/appointment-list/appointment-list">
+        <view class="menu-icon">📅</view>
+        <view class="menu-text">预约记录</view>
+        <view class="menu-arrow">></view>
+      </view>
+      <view class="menu-item" bindtap="navigateTo" data-url="/pages/review-list/review-list">
+        <view class="menu-icon">⭐</view>
+        <view class="menu-text">我的评价</view>
+        <view class="menu-arrow">></view>
+      </view>
+    </view>
+  </view>
+
+  <view class="menu-section">
+    <view class="menu-title">账户管理</view>
+    <view class="menu-card card">
+      <view class="menu-item" bindtap="navigateTo" data-url="/pages/profile-edit/profile-edit">
+        <view class="menu-icon">👤</view>
+        <view class="menu-text">个人资料</view>
+        <view class="menu-arrow">></view>
+      </view>
+      <view class="menu-item" bindtap="navigateTo" data-url="/pages/change-password/change-password">
+        <view class="menu-icon">🔒</view>
+        <view class="menu-text">修改密码</view>
+        <view class="menu-arrow">></view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 退出登录 -->
+  <view class="logout-section" wx:if="{{isLogin}}">
+    <button class="logout-btn" bindtap="handleLogout">退出登录</button>
+  </view>
+</view>
+
+

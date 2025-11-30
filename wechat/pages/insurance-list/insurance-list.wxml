@@ -1,0 +1,38 @@
+<!--pages/insurance-list/insurance-list.wxml-->
+<view class="page-container">
+  <view class="insurance-list">
+    <view class="insurance-card card" wx:for="{{insuranceList}}" wx:key="id">
+      <view class="insurance-header">
+        <view class="insurance-icon">🛡️</view>
+        <view class="insurance-badge">宠物保险</view>
+      </view>
+      <view class="insurance-info">
+        <view class="insurance-name">{{item.name}}</view>
+        <view class="insurance-coverage" wx:if="{{item.coverage}}">
+          <text class="coverage-icon">✓</text>
+          <text class="coverage-text">{{item.coverage}}</text>
+        </view>
+        <view class="insurance-limit" wx:if="{{item.claimLimit}}">
+          <text class="limit-icon">📋</text>
+          <text class="limit-text">{{item.claimLimit}}</text>
+        </view>
+        <view class="insurance-footer">
+          <view class="insurance-price">
+            <text class="price-symbol">¥</text>
+            <text class="price-value">{{item.price}}</text>
+            <text class="price-unit">/年</text>
+          </view>
+          <view class="footer-actions">
+            <button class="detail-btn" bindtap="viewDetail" data-id="{{item.id}}">查看详情</button>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="empty-state" wx:if="{{insuranceList.length === 0}}">
+    <view class="empty-icon">🛡️</view>
+    <view class="empty-text">暂无保险</view>
+  </view>
+</view>
+
+

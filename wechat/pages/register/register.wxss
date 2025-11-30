@@ -1,0 +1,118 @@
+/* pages/register/register.wxss */
+.register-container {
+  min-height: 100vh;
+  background: #f5f7fa;
+}
+
+/* 顶部装饰 */
+.register-header {
+  position: relative;
+  height: 400rpx;
+  overflow: hidden;
+}
+
+.header-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: linear-gradient(135deg, #2c5f2d 0%, #97bc62 100%);
+  border-radius: 0 0 50% 50% / 0 0 30rpx 30rpx;
+}
+
+.header-content {
+  position: relative;
+  z-index: 1;
+  padding-top: 80rpx;
+  text-align: center;
+  color: white;
+}
+
+.logo-icon {
+  font-size: 100rpx;
+  margin-bottom: 20rpx;
+}
+
+.system-name {
+  font-size: 40rpx;
+  font-weight: 600;
+  margin-bottom: 16rpx;
+}
+
+.welcome-text {
+  font-size: 26rpx;
+  opacity: 0.9;
+}
+
+/* 注册表单 */
+.register-form {
+  margin: -60rpx 30rpx 30rpx;
+  padding: 40rpx;
+}
+
+.form-title {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #303133;
+  margin-bottom: 40rpx;
+  text-align: center;
+}
+
+.form-item {
+  margin-bottom: 30rpx;
+}
+
+.form-label {
+  font-size: 26rpx;
+  color: #606266;
+  margin-bottom: 12rpx;
+}
+
+.form-input {
+  width: 100%;
+  padding: 32rpx 26rpx;
+  border: 2rpx solid #dcdfe6;
+  border-radius: 8rpx;
+  font-size: 28rpx;
+  box-sizing: border-box;
+  min-height: 88rpx;
+}
+
+.tip-text {
+  font-size: 22rpx;
+  margin-top: 8rpx;
+}
+
+.error-tip {
+  color: #f56c6c;
+}
+
+.success-tip {
+  color: #67c23a;
+}
+
+.register-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #2c5f2d 0%, #97bc62 100%);
+  color: white;
+  border: none;
+  border-radius: 8rpx;
+  padding: 28rpx;
+  font-size: 32rpx;
+  font-weight: 600;
+  margin-top: 40rpx;
+}
+
+.form-footer {
+  margin-top: 30rpx;
+  text-align: center;
+}
+
+.login-link {
+  color: #2c5f2d;
+  font-size: 26rpx;
+  font-weight: 600;
+}
+
+

@@ -1,0 +1,121 @@
+/* pages/login/login.wxss */
+.login-container {
+  min-height: 100vh;
+  background: #f5f7fa;
+}
+
+/* 顶部装饰 */
+.login-header {
+  position: relative;
+  height: 450rpx;
+  overflow: hidden;
+}
+
+.header-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: linear-gradient(135deg, #2c5f2d 0%, #97bc62 100%);
+  border-radius: 0 0 50% 50% / 0 0 30rpx 30rpx;
+}
+
+.header-content {
+  position: relative;
+  z-index: 1;
+  padding-top: 100rpx;
+  text-align: center;
+  color: white;
+}
+
+.logo-icon {
+  font-size: 120rpx;
+  margin-bottom: 30rpx;
+}
+
+.system-name {
+  font-size: 48rpx;
+  font-weight: 600;
+  margin-bottom: 20rpx;
+}
+
+.welcome-text {
+  font-size: 28rpx;
+  opacity: 0.9;
+}
+
+/* 登录表单 */
+.login-form {
+  position: relative;
+  z-index: 2;
+  margin: -80rpx 30rpx 30rpx;
+  padding: 60rpx 40rpx 50rpx;
+  background: white;
+  border-radius: 16rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.08);
+}
+
+.form-title {
+  font-size: 40rpx;
+  font-weight: 600;
+  color: #303133;
+  margin-bottom: 50rpx;
+  text-align: center;
+}
+
+.form-item {
+  margin-bottom: 40rpx;
+}
+
+.form-label {
+  font-size: 28rpx;
+  color: #606266;
+  margin-bottom: 16rpx;
+}
+
+.form-input {
+  width: 100%;
+  height: 88rpx;
+  padding: 0 30rpx;
+  border: 2rpx solid #dcdfe6;
+  border-radius: 8rpx;
+  font-size: 28rpx;
+  line-height: 88rpx;
+  box-sizing: border-box;
+}
+
+.login-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #2c5f2d 0%, #97bc62 100%);
+  color: white;
+  border: none;
+  border-radius: 8rpx;
+  padding: 28rpx;
+  font-size: 32rpx;
+  font-weight: 600;
+  margin-top: 40rpx;
+}
+
+.form-footer {
+  margin-top: 30rpx;
+  text-align: center;
+}
+
+.register-link {
+  color: #2c5f2d;
+  font-size: 26rpx;
+}
+
+/* 底部说明 */
+.login-footer {
+  padding: 40rpx 30rpx;
+  text-align: center;
+}
+
+.footer-text {
+  font-size: 22rpx;
+  color: #909399;
+}
+
+

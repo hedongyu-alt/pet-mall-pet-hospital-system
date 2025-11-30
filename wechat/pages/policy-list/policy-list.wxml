@@ -1,0 +1,60 @@
+<!--pages/policy-list/policy-list.wxml-->
+<view class="page-container">
+  <!-- 页面标题 -->
+  <view class="page-header">
+    <view class="header-title">我的保单</view>
+    <view class="header-subtitle">查看您购买的所有保险产品</view>
+  </view>
+
+  <!-- 保单列表 -->
+  <view class="policy-grid">
+    <view class="policy-card" wx:for="{{policyList}}" wx:key="id">
+      <!-- 保单头部 -->
+      <view class="policy-header">
+        <view class="insurance-icon">🏠</view>
+        <view class="status-tag {{item.status === '生效中' ? 'active' : 'inactive'}}">{{item.status}}</view>
+      </view>
+
+      <!-- 保单主体 -->
+      <view class="policy-body">
+        <view class="insurance-name">{{item.insuranceName}}</view>
+        <view class="policy-info-row">
+          <text class="label">订单编号：</text>
+          <text class="value">{{item.orderNo}}</text>
+        </view>
+        <view class="policy-info-row">
+          <text class="label">宠物信息：</text>
+          <text class="value">{{item.petName}} / {{item.petType}} / {{item.petAge}}岁</text>
+        </view>
+        <view class="policy-info-row">
+          <text class="label">保险期限：</text>
+          <text class="value">{{item.startDate}} 至 {{item.endDate}}</text>
+        </view>
+        <view class="policy-price">
+          <text class="price-symbol">¥</text>
+          <text class="price-value">{{item.price}}</text>
+          <text class="price-unit">/年</text>
+        </view>
+      </view>
+
+      <!-- 保单底部 -->
+      <view class="policy-footer">
+        <button 
+          class="claim-btn {{item.status !== '生效中' ? 'disabled' : ''}}" 
+          bindtap="makeClaim" 
+          data-id="{{item.id}}"
+          disabled="{{item.status !== '生效中'}}">
+          申请理赔
+        </button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{policyList.length === 0}}">
+    <view class="empty-icon">📋</view>
+    <view class="empty-text">暂无保单</view>
+  </view>
+</view>
+
+

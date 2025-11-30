@@ -1,0 +1,113 @@
+<!--pages/appointment-create/appointment-create.wxml-->
+<view class="page-container">
+  <view class="hospital-info">
+    <text class="hospital-name">预约医院：{{hospitalName}}</text>
+  </view>
+
+  <view class="form-section card">
+    <view class="form-item">
+      <view class="form-label required">宠物名称</view>
+      <input 
+        class="form-input" 
+        placeholder="请输入宠物名称"
+        data-field="petName"
+        value="{{formData.petName}}"
+        bindinput="onInputChange" />
+    </view>
+
+    <view class="form-item">
+      <view class="form-label required">宠物类型</view>
+      <picker 
+        mode="selector" 
+        range="{{petTypes}}" 
+        value="{{petTypeIndex}}"
+        bindchange="onPetTypeChange">
+        <view class="form-picker">
+          <text class="{{petTypeIndex == -1 ? 'placeholder' : ''}}">
+            {{petTypeIndex == -1 ? '请选择宠物类型' : petTypes[petTypeIndex]}}
+          </text>
+          <text class="arrow">></text>
+        </view>
+      </picker>
+    </view>
+
+    <view class="form-item">
+      <view class="form-label required">病情描述</view>
+      <textarea 
+        class="form-textarea" 
+        placeholder="请详细描述宠物的病情或就诊需求"
+        data-field="conditionDescription"
+        value="{{formData.conditionDescription}}"
+        bindinput="onInputChange"
+        maxlength="500"
+        show-confirm-bar="{{false}}" />
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">病情图片</view>
+      <view class="image-upload">
+        <view class="image-list">
+          <view class="image-item" wx:for="{{imageList}}" wx:key="index">
+            <image class="uploaded-image" src="{{item}}" mode="aspectFill"></image>
+            <view class="delete-btn" data-index="{{index}}" bindtap="deleteImage">×</view>
+          </view>
+          <view class="upload-btn" wx:if="{{imageList.length < 5}}" bindtap="chooseImage">
+            <text class="upload-icon">+</text>
+            <text class="upload-text">上传图片</text>
+          </view>
+        </view>
+        <view class="upload-tip">最多上传5张图片</view>
+      </view>
+    </view>
+
+    <view class="form-item">
+      <view class="form-label required">预约日期</view>
+      <picker 
+        mode="date" 
+        start="{{todayDate}}"
+        value="{{formData.appointmentDate}}"
+        bindchange="onDateChange">
+        <view class="form-picker">
+          <text class="{{formData.appointmentDate ? '' : 'placeholder'}}">
+            {{formData.appointmentDate || '请选择预约日期'}}
+          </text>
+          <text class="arrow">></text>
+        </view>
+      </picker>
+    </view>
+
+    <view class="form-item">
+      <view class="form-label required">预约时间</view>
+      <picker 
+        mode="time" 
+        start="08:00"
+        end="20:00"
+        value="{{formData.appointmentTime}}"
+        bindchange="onTimeChange">
+        <view class="form-picker">
+          <text class="{{formData.appointmentTime ? '' : 'placeholder'}}">
+            {{formData.appointmentTime || '请选择预约时间'}}
+          </text>
+          <text class="arrow">></text>
+        </view>
+      </picker>
+    </view>
+
+    <view class="form-item">
+      <view class="form-label required">联系电话</view>
+      <input 
+        class="form-input" 
+        placeholder="请输入联系电话"
+        type="number"
+        maxlength="11"
+        data-field="contactPhone"
+        value="{{formData.contactPhone}}"
+        bindinput="onInputChange" />
+    </view>
+  </view>
+
+  <view class="submit-section">
+    <button class="submit-btn" catchtap="handleSubmit">提交预约</button>
+  </view>
+</view>
+

@@ -1,0 +1,41 @@
+<!--pages/review-edit/review-edit.wxml-->
+<view class="page-container">
+  <view class="form-section">
+    <!-- 商品信息 -->
+    <view class="product-info card" wx:for="{{products}}" wx:key="id">
+      <image class="product-image" src="{{item.productImage}}" mode="aspectFill"></image>
+      <view class="product-name">{{item.productName}}</view>
+    </view>
+
+    <!-- 评分 -->
+    <view class="form-item card">
+      <view class="form-label">评分</view>
+      <view class="rating-selector">
+        <text class="star {{starNum <= rating ? 'active' : ''}}" 
+              wx:for="{{[1,2,3,4,5]}}" 
+              wx:key="*this" 
+              wx:for-item="starNum"
+              bindtap="selectRating" 
+              data-rating="{{starNum}}">★</text>
+      </view>
+    </view>
+
+    <!-- 评价内容 -->
+    <view class="form-item card">
+      <view class="form-label">评价内容</view>
+      <textarea 
+        class="review-textarea" 
+        placeholder="请输入您的评价" 
+        value="{{content}}"
+        bindinput="onContentInput"
+        maxlength="500"></textarea>
+      <view class="char-count">{{content.length}}/500</view>
+    </view>
+
+    <!-- 提交按钮 -->
+    <view class="submit-section">
+      <button class="submit-btn" bindtap="submitReview">提交评价</button>
+    </view>
+  </view>
+</view>
+

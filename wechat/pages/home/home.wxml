@@ -1,0 +1,212 @@
+<!--pages/home/home.wxml-->
+<view class="home-container">
+  <!-- 轮播图 -->
+  <view class="carousel-section">
+    <swiper class="carousel" indicator-dots="{{true}}" autoplay="{{true}}" interval="4000" duration="500" circular="{{true}}">
+      <swiper-item wx:for="{{carouselItems}}" wx:key="index">
+        <image class="carousel-image" src="{{item}}" mode="aspectFill"></image>
+      </swiper-item>
+    </swiper>
+  </view>
+
+  <!-- 欢迎卡片 -->
+  <view class="welcome-section">
+    <view class="welcome-card card">
+      <view class="welcome-icon">👋</view>
+      <view class="welcome-text">
+        <view class="welcome-title">欢迎回来，{{userNickname}}！</view>
+        <view class="welcome-subtitle">在伴侣宠物之家，与您的爱宠共度美好时光</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 商品模块 -->
+  <view class="module-section">
+    <view class="section-header">
+      <view class="section-title">
+        <view class="title-text">热门商品</view>
+        <view class="title-subtitle">精选优质宠物用品</view>
+      </view>
+      <view class="section-more" bindtap="navigateTo" data-url="/pages/product-list/product-list">
+        更多 >
+      </view>
+    </view>
+    <view class="cards-grid">
+      <view class="item-card card" wx:for="{{productList}}" wx:key="id" bindtap="navigateTo" data-url="/pages/product-detail/product-detail?id={{item.id}}">
+        <image class="card-image" src="{{item.image}}" mode="aspectFill"></image>
+        <view class="card-content">
+          <view class="card-title">{{item.name}}</view>
+          <view class="product-meta">
+            <text class="category-tag">{{item.categoryName}}</text>
+            <text class="pet-type">{{item.petType}}</text>
+          </view>
+          <view class="product-price">¥{{item.price}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 保险模块 -->
+  <view class="module-section">
+    <view class="section-header">
+      <view class="section-title">
+        <view class="title-text">宠物保险</view>
+        <view class="title-subtitle">为爱宠提供全方位保障</view>
+      </view>
+      <view class="section-more" bindtap="navigateTo" data-url="/pages/insurance-list/insurance-list">
+        更多 >
+      </view>
+    </view>
+    <view class="cards-grid">
+      <view class="item-card card insurance-card" wx:for="{{insuranceList}}" wx:key="id" bindtap="navigateTo" data-url="/pages/insurance-detail/insurance-detail?id={{item.id}}">
+        <view class="insurance-header">
+          <view class="insurance-icon">🛡️</view>
+          <view class="insurance-badge">宠物保险</view>
+        </view>
+        <view class="card-content">
+          <view class="card-title">{{item.name}}</view>
+          <view class="insurance-desc">{{item.description}}</view>
+          <view class="insurance-price">
+            <text class="price-value">¥{{item.price}}</text>
+            <text class="price-unit">/年</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 医院模块 -->
+  <view class="module-section">
+    <view class="section-header">
+      <view class="section-title">
+        <view class="title-text">宠物医院</view>
+        <view class="title-subtitle">专业医疗服务机构</view>
+      </view>
+      <view class="section-more" bindtap="navigateTo" data-url="/pages/hospital-list/hospital-list">
+        更多 >
+      </view>
+    </view>
+    <view class="cards-grid">
+      <view class="item-card card" wx:for="{{hospitalList}}" wx:key="id" bindtap="navigateTo" data-url="/pages/hospital-detail/hospital-detail?id={{item.id}}">
+        <image class="card-image" src="{{item.image}}" mode="aspectFill"></image>
+        <view class="card-content">
+          <view class="card-title">{{item.name}}</view>
+          <view class="hospital-services">{{item.services}}</view>
+          <view class="hospital-address">📍 {{item.address}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 配种模块 -->
+  <view class="module-section">
+    <view class="section-header">
+      <view class="section-title">
+        <view class="title-text">宠物配种</view>
+        <view class="title-subtitle">优质配种服务信息</view>
+      </view>
+      <view class="section-more" bindtap="navigateTo" data-url="/pages/breeding-list/breeding-list">
+        更多 >
+      </view>
+    </view>
+    <view class="cards-grid">
+      <view class="item-card card" wx:for="{{breedingList}}" wx:key="id" bindtap="navigateTo" data-url="/pages/breeding-detail/breeding-detail?id={{item.id}}">
+        <image class="card-image" src="{{item.image}}" mode="aspectFill"></image>
+        <view class="card-content">
+          <view class="card-title">{{item.title}}</view>
+          <view class="pet-tags">
+            <text class="tag tag-success">{{item.petType}}</text>
+            <text class="tag tag-warning">{{item.petGender}}</text>
+            <text class="tag tag-info">{{item.breed}}</text>
+          </view>
+          <view class="status-tag">{{item.status}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 寄养模块 -->
+  <view class="module-section">
+    <view class="section-header">
+      <view class="section-title">
+        <view class="title-text">宠物寄养</view>
+        <view class="title-subtitle">安全可靠的寄养环境</view>
+      </view>
+      <view class="section-more" bindtap="navigateTo" data-url="/pages/foster-list/foster-list">
+        更多 >
+      </view>
+    </view>
+    <view class="cards-grid">
+      <view class="item-card card" wx:for="{{fosterList}}" wx:key="id" bindtap="navigateTo" data-url="/pages/foster-detail/foster-detail?id={{item.id}}">
+        <image class="card-image" src="{{item.image}}" mode="aspectFill"></image>
+        <view class="card-content">
+          <view class="card-title">{{item.title}}</view>
+          <view class="pet-tags">
+            <text class="tag tag-success">{{item.petType}}</text>
+            <text class="tag tag-warning">{{item.petGender}}</text>
+            <text class="tag tag-info">{{item.breed}}</text>
+          </view>
+          <view class="status-tag">{{item.status}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 领养模块 -->
+  <view class="module-section">
+    <view class="section-header">
+      <view class="section-title">
+        <view class="title-text">宠物领养</view>
+        <view class="title-subtitle">给它们一个温暖的家</view>
+      </view>
+      <view class="section-more" bindtap="navigateTo" data-url="/pages/adoption-list/adoption-list">
+        更多 >
+      </view>
+    </view>
+    <view class="cards-grid">
+      <view class="item-card card" wx:for="{{adoptionList}}" wx:key="id" bindtap="navigateTo" data-url="/pages/adoption-detail/adoption-detail?id={{item.id}}">
+        <image class="card-image" src="{{item.image}}" mode="aspectFill"></image>
+        <view class="card-content">
+          <view class="card-title">{{item.title}}</view>
+          <view class="pet-tags">
+            <text class="tag tag-success">{{item.petType}}</text>
+            <text class="tag tag-warning">{{item.petGender}}</text>
+            <text class="tag tag-info">{{item.breed}}</text>
+          </view>
+          <view class="status-tag">{{item.status}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 论坛模块 -->
+  <view class="module-section">
+    <view class="section-header">
+      <view class="section-title">
+        <view class="title-text">宠物论坛</view>
+        <view class="title-subtitle">分享养宠经验和故事</view>
+      </view>
+      <view class="section-more" bindtap="navigateTo" data-url="/pages/forum-list/forum-list">
+        更多 >
+      </view>
+    </view>
+    <view class="cards-grid">
+      <view class="item-card card forum-card" wx:for="{{forumList}}" wx:key="id" bindtap="navigateTo" data-url="/pages/forum-detail/forum-detail?id={{item.id}}">
+        <image class="card-image" src="{{item.image}}" mode="aspectFill"></image>
+        <view class="card-content">
+          <view class="card-title">{{item.title}}</view>
+          <view class="forum-stats">
+            <text>👍 {{item.likeCount}}</text>
+            <text>💬 {{item.commentCount}}</text>
+          </view>
+          <view class="forum-author">
+            <image class="author-avatar" src="{{item.userAvatar}}" mode="aspectFill"></image>
+            <text class="author-name">{{item.username}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+

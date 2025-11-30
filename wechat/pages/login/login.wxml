@@ -1,0 +1,40 @@
+<!--pages/login/login.wxml-->
+<view class="login-container">
+  <!-- 顶部装饰 -->
+  <view class="login-header">
+    <view class="header-bg"></view>
+    <view class="header-content">
+      <view class="logo-icon">🐾</view>
+      <view class="system-name">伴侣宠物之家系统</view>
+      <view class="welcome-text">爱宠生活，从这里开始</view>
+    </view>
+  </view>
+
+  <!-- 登录表单 -->
+  <view class="login-form card">
+    <view class="form-title">用户登录</view>
+    
+    <view class="form-item">
+      <view class="form-label">用户名</view>
+      <input class="form-input" placeholder="请输入用户名" value="{{username}}" bindinput="onUsernameInput" />
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">密码</view>
+      <input class="form-input" placeholder="请输入密码" value="{{password}}" bindinput="onPasswordInput" password="{{true}}" />
+    </view>
+
+    <button class="login-btn" bindtap="handleLogin">登录</button>
+
+    <view class="form-footer">
+      <view class="register-link" bindtap="goRegister">还没有账号？立即注册</view>
+    </view>
+  </view>
+
+  <!-- 底部说明 -->
+  <view class="login-footer">
+    <view class="footer-text">登录即表示同意《用户协议》和《隐私政策》</view>
+  </view>
+</view>
+
+

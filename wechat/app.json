@@ -1,0 +1,71 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/product-list/product-list",
+    "pages/insurance-list/insurance-list",
+    "pages/hospital-list/hospital-list",
+    "pages/profile/profile",
+    "pages/login/login",
+    "pages/register/register",
+    "pages/product-detail/product-detail",
+    "pages/insurance-detail/insurance-detail",
+    "pages/hospital-detail/hospital-detail",
+    "pages/breeding-list/breeding-list",
+    "pages/breeding-detail/breeding-detail",
+    "pages/breeding-publish/breeding-publish",
+    "pages/foster-list/foster-list",
+    "pages/foster-detail/foster-detail",
+    "pages/foster-publish/foster-publish",
+    "pages/adoption-list/adoption-list",
+    "pages/adoption-detail/adoption-detail",
+    "pages/adoption-publish/adoption-publish",
+    "pages/forum-list/forum-list",
+    "pages/forum-detail/forum-detail",
+    "pages/forum-publish/forum-publish",
+    "pages/cart/cart",
+    "pages/order-list/order-list",
+    "pages/appointment-list/appointment-list",
+    "pages/appointment-create/appointment-create",
+    "pages/policy-list/policy-list",
+    "pages/claim-list/claim-list",
+    "pages/claim-create/claim-create",
+    "pages/order-confirm/order-confirm",
+    "pages/review-list/review-list",
+    "pages/review-edit/review-edit",
+    "pages/change-password/change-password",
+    "pages/profile-edit/profile-edit"
+  ],
+  "window": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "伴侣宠物之家",
+    "navigationBarBackgroundColor": "#2c5f2d"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#2c5f2d",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "fontSize": "16px",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/product-list/product-list",
+        "text": "商品"
+      },
+      {
+        "pagePath": "pages/forum-list/forum-list",
+        "text": "论坛"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}
+

@@ -1,0 +1,100 @@
+<!--pages/insurance-detail/insurance-detail.wxml-->
+<view class="page-container">
+  <view class="insurance-header card">
+    <view class="insurance-icon">🛡️</view>
+    <view class="insurance-name">{{insurance.name}}</view>
+    <view class="insurance-price">¥{{insurance.price}}/年</view>
+  </view>
+  
+  <view class="insurance-content card">
+    <view class="content-title">保险详情</view>
+    <view class="content-text">{{insurance.detail || insurance.description}}</view>
+  </view>
+  
+  <view class="insurance-content card" wx:if="{{insurance.coverage}}">
+    <view class="content-title">保险范围</view>
+    <view class="content-text">{{insurance.coverage}}</view>
+  </view>
+  
+  <view class="insurance-content card" wx:if="{{insurance.claimLimit}}">
+    <view class="content-title">理赔限额</view>
+    <view class="content-text highlight">{{insurance.claimLimit}}</view>
+  </view>
+  
+  <view class="insurance-content card" wx:if="{{insurance.claimNotice}}">
+    <view class="content-title">理赔须知</view>
+    <view class="content-text">{{insurance.claimNotice}}</view>
+  </view>
+  
+  <view class="footer">
+    <button class="buy-btn" bindtap="buyInsurance">立即购买</button>
+  </view>
+</view>
+
+<!-- 购买弹窗 -->
+<view class="modal-overlay" wx:if="{{showPurchaseModal}}" bindtap="closePurchaseModal">
+  <view class="modal-content" catchtap="stopPropagation">
+    <view class="modal-header">
+      <text class="modal-title">购买保险</text>
+      <text class="modal-close" bindtap="closePurchaseModal">×</text>
+    </view>
+    <scroll-view class="modal-body" scroll-y>
+      <view class="form-section">
+        <view class="section-title">宠物信息</view>
+        <view class="form-item">
+          <text class="form-label">宠物名称 *</text>
+          <input class="form-input" placeholder="请输入宠物名称" placeholder-class="input-placeholder" value="{{purchaseForm.petName}}" bindinput="onFormInput" data-field="petName" />
+        </view>
+        <view class="form-item">
+          <text class="form-label">宠物类型 *</text>
+          <view class="pet-type-btns">
+            <view class="type-btn {{purchaseForm.petType === '狗' ? 'active' : ''}}" bindtap="selectPetType" data-type="狗">狗</view>
+            <view class="type-btn {{purchaseForm.petType === '猫' ? 'active' : ''}}" bindtap="selectPetType" data-type="猫">猫</view>
+          </view>
+        </view>
+        <view class="form-item">
+          <text class="form-label">宠物年龄 *</text>
+          <input class="form-input" type="number" placeholder="请输入宠物年龄" placeholder-class="input-placeholder" value="{{purchaseForm.petAge}}" bindinput="onFormInput" data-field="petAge" />
+        </view>
+        <view class="form-item">
+          <text class="form-label">宠物品种</text>
+          <input class="form-input" placeholder="请输入宠物品种（选填）" placeholder-class="input-placeholder" value="{{purchaseForm.petBreed}}" bindinput="onFormInput" data-field="petBreed" />
+        </view>
+      </view>
+      <view class="form-section">
+        <view class="section-title">收款信息</view>
+        <view class="form-item">
+          <text class="form-label">收款人姓名 *</text>
+          <input class="form-input" placeholder="请输入收款人姓名" placeholder-class="input-placeholder" value="{{purchaseForm.payeeName}}" bindinput="onFormInput" data-field="payeeName" />
+        </view>
+        <view class="form-item">
+          <text class="form-label">收款人电话 *</text>
+          <input class="form-input" type="number" placeholder="请输入收款人电话" placeholder-class="input-placeholder" value="{{purchaseForm.payeePhone}}" bindinput="onFormInput" data-field="payeePhone" />
+        </view>
+        <view class="form-item">
+          <text class="form-label">收款账号 *</text>
+          <input class="form-input" placeholder="请输入收款账号" placeholder-class="input-placeholder" value="{{purchaseForm.payeeAccount}}" bindinput="onFormInput" data-field="payeeAccount" />
+        </view>
+      </view>
+      <view class="form-section">
+        <view class="section-title">保险生效信息</view>
+        <view class="form-item">
+          <text class="form-label">生效日期 *</text>
+          <picker mode="date" value="{{purchaseForm.startDate}}" bindchange="onDateChange">
+            <view class="form-input picker">{{purchaseForm.startDate || '请选择生效日期'}}</view>
+          </picker>
+        </view>
+        <view class="form-item">
+          <text class="form-label">保险费用</text>
+          <view class="price-display">¥{{insurance.price}}/年</view>
+        </view>
+      </view>
+    </scroll-view>
+    <view class="modal-footer">
+      <button class="modal-cancel-btn" bindtap="closePurchaseModal">取消</button>
+      <button class="modal-confirm-btn" bindtap="submitPurchase">确认购买</button>
+    </view>
+  </view>
+</view>
+
+

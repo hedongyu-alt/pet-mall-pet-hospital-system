@@ -1,0 +1,47 @@
+<!--pages/forum-publish/forum-publish.wxml-->
+<view class="publish-container">
+  <view class="form-section card">
+    <!-- 标题 -->
+    <view class="form-item">
+      <view class="form-label required">标题</view>
+      <input class="form-input" placeholder="请输入帖子标题" value="{{formData.title}}" bindinput="onInputChange" data-field="title" maxlength="50" />
+    </view>
+
+    <!-- 内容 -->
+    <view class="form-item">
+      <view class="form-label required">内容</view>
+      <textarea class="form-textarea content-textarea" placeholder="分享您的养宠经验和故事..." value="{{formData.content}}" bindinput="onInputChange" data-field="content" maxlength="2000" />
+    </view>
+
+    <!-- 关键词 -->
+    <view class="form-item">
+      <view class="form-label">关键词</view>
+      <input class="form-input" placeholder="请输入关键词，用逗号分隔" value="{{formData.keywords}}" bindinput="onInputChange" data-field="keywords" />
+      <view class="form-tip">例如：养宠经验,健康护理,训练技巧</view>
+    </view>
+
+    <!-- 照片上传 -->
+    <view class="form-item">
+      <view class="form-label">配图（选填）</view>
+      <view class="upload-section">
+        <view class="image-list">
+          <view class="image-item" wx:for="{{imageList}}" wx:key="index">
+            <image class="uploaded-image" src="{{item}}" mode="aspectFill"></image>
+            <view class="image-delete" bindtap="deleteImage" data-index="{{index}}">×</view>
+          </view>
+          <view class="upload-btn" wx:if="{{imageList.length < 9}}" bindtap="chooseImage">
+            <text class="upload-icon">+</text>
+            <text class="upload-text">添加图片</text>
+          </view>
+        </view>
+        <view class="upload-tip">最多上传9张图片</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 提交按钮 -->
+  <view class="submit-section">
+    <button class="submit-btn" catchtap="handleSubmit">发布帖子</button>
+  </view>
+</view>
+

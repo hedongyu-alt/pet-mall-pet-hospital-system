@@ -1,0 +1,100 @@
+<!--pages/claim-list/claim-list.wxml-->
+<view class="page-container">
+  <!-- 页面标题 -->
+  <view class="page-header">
+    <view class="header-title">申保记录</view>
+    <view class="header-subtitle">查看您的所有理赔申请记录</view>
+  </view>
+
+  <!-- 筛选区域 -->
+  <view class="search-section card">
+    <view class="filter-label">申请状态：</view>
+    <view class="filter-buttons">
+      <view class="filter-btn {{searchStatus === '' ? 'active' : ''}}" bindtap="filterByStatus" data-status="">全部</view>
+      <view class="filter-btn {{searchStatus === '待审核' ? 'active' : ''}}" bindtap="filterByStatus" data-status="待审核">待审核</view>
+      <view class="filter-btn {{searchStatus === '审核通过' ? 'active' : ''}}" bindtap="filterByStatus" data-status="审核通过">审核通过</view>
+      <view class="filter-btn {{searchStatus === '审核拒绝' ? 'active' : ''}}" bindtap="filterByStatus" data-status="审核拒绝">审核拒绝</view>
+      <view class="filter-btn {{searchStatus === '已打款' ? 'active' : ''}}" bindtap="filterByStatus" data-status="已打款">已打款</view>
+    </view>
+  </view>
+
+  <!-- 申保记录列表 -->
+  <view class="claim-list">
+    <view class="claim-card card" wx:for="{{claimList}}" wx:key="id">
+      <!-- 头部 -->
+      <view class="claim-header">
+        <view class="claim-info">
+          <view class="claim-no">理赔编号：{{item.claimNo}}</view>
+          <view class="status-tag {{getStatusClass(item.status)}}">{{item.status}}</view>
+        </view>
+        <view class="claim-time">{{item.createTime}}</view>
+      </view>
+
+      <!-- 主体 -->
+      <view class="claim-body">
+        <view class="detail-row">
+          <text class="label">保险名称：</text>
+          <text class="value">{{item.insuranceName}}</text>
+        </view>
+        <view class="detail-row">
+          <text class="label">宠物信息：</text>
+          <text class="value">{{item.petName}}</text>
+        </view>
+        <view class="detail-row">
+          <text class="label">申请原因：</text>
+          <text class="value">{{item.reason}}</text>
+        </view>
+        <view class="detail-row">
+          <text class="label">情况描述：</text>
+          <text class="value description-text">{{item.description}}</text>
+        </view>
+        
+        <!-- 理赔金额 -->
+        <view class="detail-row" wx:if="{{item.claimAmount}}">
+          <text class="label">理赔金额：</text>
+          <text class="value amount">¥{{item.claimAmount}}</text>
+        </view>
+        
+        <!-- 拒绝原因 -->
+        <view class="reject-row" wx:if="{{item.status === '审核拒绝' && item.rejectReason}}">
+          <view class="detail-row">
+            <text class="label">拒绝原因：</text>
+            <text class="value">{{item.rejectReason}}</text>
+          </view>
+        </view>
+        
+        <!-- 管理员备注 -->
+        <view class="detail-row" wx:if="{{item.adminRemark}}">
+          <text class="label">备注信息：</text>
+          <text class="value">{{item.adminRemark}}</text>
+        </view>
+
+        <!-- 佐证图片 -->
+        <view class="evidence-section" wx:if="{{item.images && item.images.length > 0}}">
+          <view class="evidence-label">佐证图片：</view>
+          <view class="evidence-images">
+            <image 
+              class="evidence-image" 
+              wx:for="{{item.images}}" 
+              wx:key="index" 
+              wx:for-item="img"
+              src="{{img}}" 
+              mode="aspectFill"
+              bindtap="previewImage"
+              data-images="{{item.images}}"
+              data-current="{{img}}">
+            </image>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{claimList.length === 0}}">
+    <view class="empty-icon">📄</view>
+    <view class="empty-text">暂无申保记录</view>
+  </view>
+</view>
+
+

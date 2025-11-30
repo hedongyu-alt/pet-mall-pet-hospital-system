@@ -1,0 +1,61 @@
+<!--pages/claim-create/claim-create.wxml-->
+<view class="page-container">
+  <view class="policy-info card">
+    <view class="info-title">保单信息</view>
+    <view class="info-row">
+      <text class="info-label">保险名称：</text>
+      <text class="info-value">{{insuranceName}}</text>
+    </view>
+    <view class="info-row">
+      <text class="info-label">宠物信息：</text>
+      <text class="info-value">{{petName}} / {{petType}}</text>
+    </view>
+  </view>
+
+  <view class="form-section card">
+    <view class="form-item">
+      <view class="form-label required">申请原因</view>
+      <input 
+        class="form-input" 
+        placeholder="请简要说明理赔原因"
+        data-field="reason"
+        value="{{formData.reason}}"
+        maxlength="100"
+        bindinput="onInputChange" />
+    </view>
+
+    <view class="form-item">
+      <view class="form-label required">情况描述</view>
+      <textarea 
+        class="form-textarea" 
+        placeholder="请详细描述事情经过和当前情况"
+        data-field="description"
+        value="{{formData.description}}"
+        bindinput="onInputChange"
+        maxlength="500"
+        show-confirm-bar="{{false}}" />
+    </view>
+
+    <view class="form-item">
+      <view class="form-label required">佐证图片</view>
+      <view class="image-upload">
+        <view class="image-list">
+          <view class="image-item" wx:for="{{imageList}}" wx:key="index">
+            <image class="uploaded-image" src="{{item}}" mode="aspectFill"></image>
+            <view class="delete-btn" data-index="{{index}}" bindtap="deleteImage">×</view>
+          </view>
+          <view class="upload-btn" wx:if="{{imageList.length < 5}}" bindtap="chooseImage">
+            <text class="upload-icon">+</text>
+            <text class="upload-text">上传图片</text>
+          </view>
+        </view>
+        <view class="upload-tip">请上传相关证明材料（最多5张）</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="submit-section">
+    <button class="submit-btn" catchtap="handleSubmit">提交申请</button>
+  </view>
+</view>
+

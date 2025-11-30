@@ -1,0 +1,99 @@
+<!--pages/product-list/product-list.wxml-->
+<view class="product-list-container">
+  <!-- 搜索筛选区域 -->
+  <view class="search-section card">
+    <view class="search-bar">
+      <input class="search-input" placeholder="搜索商品名称或品牌" value="{{searchKeyword}}" bindinput="onSearchInput" />
+      <button class="search-btn" bindtap="handleSearch">搜索</button>
+    </view>
+
+    <!-- 筛选按钮 -->
+    <view class="filter-section">
+      <view class="filter-group">
+        <view class="filter-label">商品分类：</view>
+        <scroll-view class="filter-scroll" scroll-x="{{true}}">
+          <view class="filter-buttons">
+            <view class="filter-btn {{categoryId === '' ? 'active' : ''}}" bindtap="filterByCategory" data-id="">
+              全部
+            </view>
+            <view class="filter-btn {{categoryId === item.id ? 'active' : ''}}" wx:for="{{categories}}" wx:key="id" bindtap="filterByCategory" data-id="{{item.id}}">
+              {{item.name}}
+            </view>
+          </view>
+        </scroll-view>
+      </view>
+
+      <view class="filter-group">
+        <view class="filter-label">宠物类型：</view>
+        <view class="filter-buttons">
+          <view class="filter-btn {{petType === '' ? 'active' : ''}}" bindtap="filterByPetType" data-type="">
+            全部
+          </view>
+          <view class="filter-btn {{petType === '狗' ? 'active' : ''}}" bindtap="filterByPetType" data-type="狗">
+            狗
+          </view>
+          <view class="filter-btn {{petType === '猫' ? 'active' : ''}}" bindtap="filterByPetType" data-type="猫">
+            猫
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 商品列表 -->
+  <view class="product-grid">
+    <view class="product-card card" wx:for="{{productList}}" wx:key="id" bindtap="viewDetail" data-id="{{item.id}}">
+      <image class="product-image" src="{{item.image}}" mode="aspectFill"></image>
+      <view class="product-info">
+        <view class="product-name">{{item.name}}</view>
+        <view class="product-category">{{item.categoryName}} · {{item.petType}}</view>
+        <view class="product-brand" wx:if="{{item.brand}}">品牌：{{item.brand}}</view>
+        <view class="product-footer">
+          <view class="product-price">¥{{item.price}}</view>
+          <button class="add-cart-btn" catchtap="addToCart" data-item="{{item}}">加购</button>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{productList.length === 0}}">
+    <view class="empty-icon">📦</view>
+    <view class="empty-text">暂无商品</view>
+  </view>
+
+  <!-- 加载更多 -->
+  <view class="load-more" wx:if="{{hasMore && productList.length > 0}}">
+    <button class="load-more-btn" bindtap="loadMore">加载更多</button>
+  </view>
+</view>
+
+<!-- 加入购物车弹窗 -->
+<view class="cart-modal" wx:if="{{showCartModal}}" catchtap="closeCartModal">
+  <view class="cart-modal-content" catchtap="stopPropagation">
+    <view class="modal-header">
+      <view class="modal-title">加入购物车</view>
+      <view class="modal-close" bindtap="closeCartModal">✕</view>
+    </view>
+    <view class="modal-body">
+      <view class="modal-product-info">
+        <image class="modal-product-image" src="{{selectedProduct.image}}" mode="aspectFill"></image>
+        <view class="modal-product-name">{{selectedProduct.name}}</view>
+      </view>
+      <view class="modal-form-item">
+        <view class="form-label">购买数量</view>
+        <view class="quantity-control">
+          <button class="quantity-btn" bindtap="decreaseQuantity">-</button>
+          <input class="quantity-input" type="number" value="{{cartQuantity}}" disabled />
+          <button class="quantity-btn" bindtap="increaseQuantity">+</button>
+        </view>
+      </view>
+    </view>
+    <view class="modal-footer">
+      <button class="modal-btn cancel-btn" bindtap="closeCartModal">取消</button>
+      <button class="modal-btn confirm-btn" bindtap="confirmAddToCart">确定</button>
+    </view>
+  </view>
+</view>
+
+

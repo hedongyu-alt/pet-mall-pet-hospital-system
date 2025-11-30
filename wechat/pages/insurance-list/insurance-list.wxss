@@ -1,0 +1,134 @@
+/* pages/insurance-list/insurance-list.wxss */
+.page-container {
+  padding: 30rpx;
+  padding-bottom: 120rpx;
+}
+
+.insurance-card {
+  margin-bottom: 30rpx;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 500rpx;
+}
+
+.insurance-header {
+  background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+  padding: 40rpx 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.insurance-icon {
+  font-size: 60rpx;
+}
+
+.insurance-badge {
+  background: rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 10rpx 24rpx;
+  border-radius: 30rpx;
+  font-size: 24rpx;
+  font-weight: 600;
+}
+
+.insurance-info {
+  padding: 30rpx;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.insurance-name {
+  font-size: 34rpx;
+  font-weight: 700;
+  color: #303133;
+  margin-bottom: 20rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.insurance-coverage,
+.insurance-limit {
+  display: flex;
+  align-items: flex-start;
+  font-size: 24rpx;
+  color: #606266;
+  margin-bottom: 16rpx;
+  line-height: 1.6;
+}
+
+.coverage-icon,
+.limit-icon {
+  font-size: 28rpx;
+  color: #1e3a8a;
+  margin-right: 12rpx;
+  flex-shrink: 0;
+  margin-top: 2rpx;
+}
+
+.coverage-text,
+.limit-text {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.insurance-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 20rpx;
+  border-top: 1px solid #e4e7ed;
+}
+
+.insurance-price {
+  display: flex;
+  align-items: baseline;
+}
+
+.price-symbol {
+  font-size: 32rpx;
+  color: #f56c6c;
+  font-weight: 600;
+  margin-right: 4rpx;
+}
+
+.price-value {
+  font-size: 48rpx;
+  color: #f56c6c;
+  font-weight: 700;
+}
+
+.price-unit {
+  font-size: 26rpx;
+  color: #909399;
+  margin-left: 4rpx;
+}
+
+.footer-actions {
+  display: flex;
+  gap: 16rpx;
+}
+
+.detail-btn {
+  background: #1e3a8a;
+  color: white;
+  border: none;
+  padding: 12rpx 32rpx;
+  border-radius: 8rpx;
+  font-size: 26rpx;
+  font-weight: 600;
+}
+
+.detail-btn::after {
+  border: none;
+}
+
+

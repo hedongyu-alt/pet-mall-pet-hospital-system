@@ -1,0 +1,25 @@
+<!--pages/cart/cart.wxml-->
+<view class="premium-container">
+  <view class="premium-card">
+    <view class="premium-icon">🔒</view>
+    <view class="premium-title">此功能仅为完全版用户提供</view>
+    <view class="premium-description">获取无水印完全版，解锁更多功能</view>
+    
+    <view class="premium-links">
+      <button class="link-button" open-type="navigate" bindtap="openLink1">
+        🔗 无水印 + 完全版 + 前后端分离版本
+      </button>
+      <button class="link-button" open-type="navigate" bindtap="openLink2">
+        🔗 无水印 + 完全版 + 微信小程序版本
+      </button>
+    </view>
+    
+    <view class="premium-notice">
+      <view class="notice-item">本源码免费分享 ⚠ 禁止商用</view>
+      <view class="notice-item">远程调试 · 二次修改 · 定制 · 技术讲解 · 文档类</view>
+      <view class="notice-item">VX: 16768118056 请备注来源，欢迎交流</view>
+      <view class="notice-item warning">⚠ 删除水印将导致源码损坏，请尊重版权</view>
+      <view class="notice-item tip">💡 按住 Ctrl + 滚动鼠标滚轮，可将页面调整到合适的尺寸</view>
+    </view>
+  </view>
+</view>
