@@ -95,7 +95,7 @@
         
         <div class="admin-info">
           <span class="welcome-text">欢迎，{{ userInfo.nickname }}</span>
-          <el-avatar :src="userInfo.avatar" :size="45"></el-avatar>
+          <el-avatar :src="userInfo.avatar" :size="36"></el-avatar>
         </div>
       </div>
       
@@ -335,7 +335,7 @@ export default {
 
 .welcome-text {
   color: #333;
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 500;
 }
 

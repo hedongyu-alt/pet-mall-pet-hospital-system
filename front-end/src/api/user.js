@@ -11,16 +11,23 @@ const request = axios.create({
 });
 
 // 用户登录
-export function login(username, password, role, captcha) {
+// 注意: captcha参数已改为前端验证,不再传递给后端
+export function login(username, password, role, captcha = null) {
+  const data = {
+    username,
+    password,
+    role
+  };
+  
+  // 如果传递了captcha参数,则添加到请求中(兼容后端验证的情况)
+  if (captcha !== null && captcha !== undefined) {
+    data.captcha = captcha;
+  }
+  
   return request({
     url: '/user/login',
     method: 'post',
-    data: {
-      username,
-      password,
-      role,
-      captcha
-    }
+    data
   });
 }
 

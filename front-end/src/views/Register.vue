@@ -114,6 +114,7 @@
 
 <script>
 import { register, checkUsername } from '@/api/user';
+import { generateCaptcha, verifyCaptcha } from '@/utils/captcha';
 
 export default {
   name: 'Register',
@@ -167,17 +168,28 @@ export default {
       loading: false,
       usernameChecked: false,
       usernameExists: false,
-      captchaUrl: ''
+      captchaUrl: '', // 验证码图片的base64数据
+      captchaText: '' // 正确的验证码文本
     };
   },
   mounted() {
     this.refreshCaptcha();
   },
   methods: {
+    /**
+     * 刷新验证码
+     * 前端生成新的验证码图片和文本
+     */
     refreshCaptcha() {
-      this.captchaUrl = `http://localhost:18007/api/captcha/generate?t=${Date.now()}`;
+      const captcha = generateCaptcha();
+      this.captchaUrl = captcha.image;
+      this.captchaText = captcha.text;
+      console.log('验证码已生成:', captcha.text); // 调试用,生产环境应删除
     },
-    // 检查用户名是否可用
+    
+    /**
+     * 检查用户名是否可用
+     */
     checkUsernameAvailable() {
       if (this.registerForm.username && this.registerForm.username.length >= 4) {
         checkUsername(this.registerForm.username)
@@ -194,6 +206,9 @@ export default {
       }
     },
     
+    /**
+     * 处理注册逻辑
+     */
     handleRegister() {
       // 检查用户名是否已存在
       if (this.usernameExists) {
@@ -208,16 +223,30 @@ export default {
       
       this.$refs.registerForm.validate(valid => {
         if (valid) {
+          // 前端验证验证码
+          if (!verifyCaptcha(this.registerForm.captcha, this.captchaText)) {
+            this.$notify({
+              title: '错误',
+              message: '验证码错误，请重新输入',
+              type: 'error',
+              duration: 3000
+            });
+            // 验证码错误，刷新验证码
+            this.refreshCaptcha();
+            this.registerForm.captcha = '';
+            return;
+          }
+          
+          // 验证码正确，继续注册流程
           this.loading = true;
           
-          // 准备注册数据
+          // 准备注册数据(不再传递验证码)
           const registerData = {
             username: this.registerForm.username,
             password: this.registerForm.password,
             nickname: this.registerForm.nickname,
             phone: this.registerForm.phone || null,
-            email: this.registerForm.email || null,
-            captcha: this.registerForm.captcha
+            email: this.registerForm.email || null
           };
           
           register(registerData)
@@ -265,6 +294,9 @@ export default {
       });
     },
     
+    /**
+     * 跳转到登录页面
+     */
     goToLogin() {
       this.$router.push('/login');
     }

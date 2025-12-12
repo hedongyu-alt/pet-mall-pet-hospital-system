@@ -82,7 +82,7 @@
         </div>
         
         <div class="user-info">
-          <el-avatar :src="userInfo.avatar || defaultAvatar" :size="40"></el-avatar>
+          <el-avatar :src="userInfo.avatar || defaultAvatar" :size="32"></el-avatar>
           <span class="username">{{ userInfo.nickname }}</span>
           <el-dropdown @command="handleCommand">
             <span class="el-dropdown-link">
@@ -325,11 +325,11 @@ export default {
 }
 
 .pet-icon {
-  font-size: 28px;
+  font-size: 22px;
 }
 
 .logo-text {
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 600;
 }
 
@@ -378,7 +378,7 @@ export default {
 }
 
 .username {
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 500;
 }
 
@@ -500,7 +500,7 @@ export default {
 /* 响应式设计 */
 @media (max-width: 1800px) {
   .logo-text {
-    font-size: 18px;
+    font-size: 15px;
   }
   
   .nav-menu {
@@ -519,7 +519,7 @@ export default {
   }
   
   .username {
-    font-size: 14px;
+    font-size: 12px;
   }
 }
 
@@ -529,11 +529,11 @@ export default {
   }
   
   .logo-text {
-    font-size: 16px;
+    font-size: 14px;
   }
   
   .pet-icon {
-    font-size: 24px;
+    font-size: 20px;
   }
   
   .nav-menu {
@@ -551,7 +551,7 @@ export default {
   }
   
   .username {
-    font-size: 12px;
+    font-size: 11px;
   }
 }
 
@@ -561,11 +561,11 @@ export default {
   }
   
   .logo-text {
-    font-size: 15px;
+    font-size: 13px;
   }
   
   .pet-icon {
-    font-size: 22px;
+    font-size: 18px;
   }
   
   .nav-menu {
@@ -593,11 +593,11 @@ export default {
   }
   
   .logo-text {
-    font-size: 14px;
+    font-size: 12px;
   }
   
   .pet-icon {
-    font-size: 20px;
+    font-size: 18px;
   }
   
   .nav-menu {
@@ -626,11 +626,11 @@ export default {
   }
   
   .logo-text {
-    font-size: 13px;
+    font-size: 12px;
   }
   
   .pet-icon {
-    font-size: 18px;
+    font-size: 16px;
   }
   
   .nav-menu {
@@ -676,11 +676,11 @@ export default {
   }
   
   .logo-text {
-    font-size: 16px;
+    font-size: 14px;
   }
   
   .pet-icon {
-    font-size: 22px;
+    font-size: 18px;
   }
   
   .mobile-menu-btn {

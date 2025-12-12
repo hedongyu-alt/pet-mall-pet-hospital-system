@@ -97,6 +97,7 @@
 
 <script>
 import { login } from '@/api/user';
+import { generateCaptcha, verifyCaptcha } from '@/utils/captcha';
 
 export default {
   name: 'Login',
@@ -123,21 +124,50 @@ export default {
         ]
       },
       loading: false,
-      captchaUrl: ''
+      captchaUrl: '', // 验证码图片的base64数据
+      captchaText: '' // 正确的验证码文本
     };
   },
   mounted() {
     this.refreshCaptcha();
   },
   methods: {
+    /**
+     * 刷新验证码
+     * 前端生成新的验证码图片和文本
+     */
     refreshCaptcha() {
-      this.captchaUrl = `http://localhost:18007/api/captcha/generate?t=${Date.now()}`;
+      const captcha = generateCaptcha();
+      this.captchaUrl = captcha.image;
+      this.captchaText = captcha.text;
+      console.log('验证码已生成:', captcha.text); // 调试用,生产环境应删除
     },
+    
+    /**
+     * 处理登录逻辑
+     */
     handleLogin() {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
+          // 前端验证验证码
+          if (!verifyCaptcha(this.loginForm.captcha, this.captchaText)) {
+            this.$notify({
+              title: '错误',
+              message: '验证码错误，请重新输入',
+              type: 'error',
+              duration: 3000
+            });
+            // 验证码错误，刷新验证码
+            this.refreshCaptcha();
+            this.loginForm.captcha = '';
+            return;
+          }
+          
+          // 验证码正确，继续登录流程
           this.loading = true;
-          login(this.loginForm.username, this.loginForm.password, this.loginForm.role, this.loginForm.captcha)
+          
+          // 登录时不再传递验证码参数
+          login(this.loginForm.username, this.loginForm.password, this.loginForm.role)
             .then(response => {
               this.loading = false;
               const result = response.data;
@@ -188,6 +218,10 @@ export default {
         }
       });
     },
+    
+    /**
+     * 跳转到注册页面
+     */
     goToRegister() {
       this.$router.push('/register');
     }

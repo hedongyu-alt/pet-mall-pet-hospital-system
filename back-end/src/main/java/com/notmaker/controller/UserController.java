@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
@@ -28,19 +27,17 @@ public class UserController {
     private UserService userService;
 
     /**
-     * 用户登录（web端使用，需要验证码）
+     * 用户登录（web端使用，验证码已改为前端验证）
      * @param loginRequest 登录请求参数
-     * @param session HttpSession
      * @return 登录结果
      */
     @PostMapping("/login")
-    public Map<String, Object> login(@RequestBody Map<String, String> loginRequest, HttpSession session) {
+    public Map<String, Object> login(@RequestBody Map<String, String> loginRequest) {
         Map<String, Object> result = new HashMap<>();
         
         String username = loginRequest.get("username");
         String password = loginRequest.get("password");
         String role = loginRequest.get("role");
-        String captcha = loginRequest.get("captcha");
         
         // 参数校验
         if (username == null || username.isEmpty()) {
@@ -60,23 +57,6 @@ public class UserController {
             result.put("message", "请选择登录身份");
             return result;
         }
-        
-        if (captcha == null || captcha.isEmpty()) {
-            result.put("success", false);
-            result.put("message", "验证码不能为空");
-            return result;
-        }
-        
-        // 验证验证码
-        String sessionCaptcha = (String) session.getAttribute("captcha");
-        if (sessionCaptcha == null || !sessionCaptcha.equalsIgnoreCase(captcha)) {
-            result.put("success", false);
-            result.put("message", "验证码错误");
-            return result;
-        }
-        
-        // 验证码使用后立即清除
-        session.removeAttribute("captcha");
         
         // 先查询用户是否存在
         QueryWrapper<User> checkWrapper = new QueryWrapper<>();
@@ -234,13 +214,12 @@ public class UserController {
     }
 
     /**
-     * 用户注册（web端使用，需要验证码）
+     * 用户注册（web端使用，验证码已改为前端验证）
      * @param registerRequest 注册请求参数
-     * @param session HttpSession
      * @return 注册结果
      */
     @PostMapping("/register")
-    public Map<String, Object> register(@RequestBody Map<String, String> registerRequest, HttpSession session) {
+    public Map<String, Object> register(@RequestBody Map<String, String> registerRequest) {
         Map<String, Object> result = new HashMap<>();
         
         String username = registerRequest.get("username");
@@ -248,7 +227,6 @@ public class UserController {
         String nickname = registerRequest.get("nickname");
         String phone = registerRequest.get("phone");
         String email = registerRequest.get("email");
-        String captcha = registerRequest.get("captcha");
         
         // 参数校验
         if (username == null || username.isEmpty()) {
@@ -268,23 +246,6 @@ public class UserController {
             result.put("message", "昵称不能为空");
             return result;
         }
-        
-        if (captcha == null || captcha.isEmpty()) {
-            result.put("success", false);
-            result.put("message", "验证码不能为空");
-            return result;
-        }
-        
-        // 验证验证码
-        String sessionCaptcha = (String) session.getAttribute("captcha");
-        if (sessionCaptcha == null || !sessionCaptcha.equalsIgnoreCase(captcha)) {
-            result.put("success", false);
-            result.put("message", "验证码错误");
-            return result;
-        }
-        
-        // 验证码使用后立即清除
-        session.removeAttribute("captcha");
         
         // 检查用户名是否已存在
         if (userService.checkUsernameExists(username)) {
