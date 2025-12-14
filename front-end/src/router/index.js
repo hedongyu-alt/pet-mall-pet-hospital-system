@@ -304,53 +304,85 @@ VueRouter.prototype.replace = function replace(location, onResolve, onReject) {
 
 // 路由守卫
 router.beforeEach((to, from, next) => {
-  const userInfoStr = localStorage.getItem('userInfo')
-  const userInfo = userInfoStr ? JSON.parse(userInfoStr) : null
-  
-  // 需要登录的页面
-  if (to.meta.requiresAuth) {
-    if (!userInfo) {
-      // 未登录，跳转到登录页
-      next('/login')
-      return
-    }
+  try {
+    const userInfoStr = localStorage.getItem('userInfo')
+    const userInfo = userInfoStr ? JSON.parse(userInfoStr) : null
     
-    if (to.meta.role && to.meta.role !== userInfo.role) {
-      // 角色不匹配，跳转到对应角色的首页
-      var targetPath = ''
-      if (userInfo.role === '管理员') {
-        targetPath = '/admin/home'
-      } else {
-        targetPath = '/user/home'
-      }
-      
-      // 防止无限循环：如果目标路径就是要跳转的路径，则放行
-      if (to.path === targetPath) {
-        next()
+    // 需要登录的页面
+    if (to.meta.requiresAuth) {
+      if (!userInfo) {
+        // 未登录，跳转到登录页
+        next('/login')
         return
       }
       
-      next(targetPath)
-      return
-    }
-    
-    // 验证通过
-    next()
-  } else {
-    // 不需要登录的页面
-    if (userInfo && (to.path === '/login' || to.path === '/register')) {
-      // 已登录用户访问登录或注册页面，跳转到对应首页
-      var homePath = ''
-      if (userInfo.role === '管理员') {
-        homePath = '/admin/home'
-      } else {
-        homePath = '/user/home'
+      // 检查角色是否匹配
+      if (to.meta.role && userInfo.role && to.meta.role !== userInfo.role) {
+        // 角色不匹配，跳转到对应角色的首页
+        var targetPath = ''
+        if (userInfo.role === '管理员') {
+          targetPath = '/admin/home'
+        } else if (userInfo.role === '普通用户') {
+          targetPath = '/user/home'
+        } else {
+          // 未知角色，跳转到登录页
+          next('/login')
+          return
+        }
+        
+        // 防止无限循环：如果目标路径就是要跳转的路径，或者来源路径就是目标路径，则放行
+        if (to.path === targetPath || from.path === targetPath) {
+          next()
+          return
+        }
+        
+        // 防止重定向循环：如果已经在重定向过程中，直接放行
+        if (from.path === to.path) {
+          next()
+          return
+        }
+        
+        next(targetPath)
+        return
       }
-      next(homePath)
-      return
+      
+      // 验证通过
+      next()
+    } else {
+      // 不需要登录的页面
+      if (userInfo && (to.path === '/login' || to.path === '/register')) {
+        // 已登录用户访问登录或注册页面，跳转到对应首页
+        var homePath = ''
+        if (userInfo.role === '管理员') {
+          homePath = '/admin/home'
+        } else if (userInfo.role === '普通用户') {
+          homePath = '/user/home'
+        } else {
+          // 未知角色，允许访问登录页
+          next()
+          return
+        }
+        
+        // 防止重定向循环
+        if (from.path === homePath) {
+          next()
+          return
+        }
+        
+        next(homePath)
+        return
+      }
+      
+      next()
     }
-    
-    next()
+  } catch (error) {
+    console.error('路由守卫错误:', error)
+    // 发生错误时，如果是需要登录的页面，跳转到登录页
+    if (to.meta.requiresAuth) {
+      next('/login')
+    } else {
+      next()
+    }
   }
 })
 
