@@ -57,3 +57,4 @@ pnpm-debug.log*
 *.sln
 *.sw?
 *.md
+!CLAUDE.md
